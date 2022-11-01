@@ -1,0 +1,35 @@
+def riverSizes(matrix):
+    sizes = []
+    col = len(matrix)
+    row = len(matrix[0])
+    # for i in range(col):
+    #     for j in range(row):
+    #         if matrix[i][j] == 1:
+    #             list.append(getSize(i,j,matrix))
+    # return list
+
+    print((getSize(0,0,matrix)))
+
+dirs = [[0,1],[0,-1],[1,0],[-1,0]]
+def getSize(i,j,matrix):
+    visited = set()
+    q = []
+    length = 0
+    q.append((i,j,length))
+    visited.add((i,j))
+
+    while q:
+        cur = q.pop()
+        print(cur)
+        length = cur[2]
+        matrix[cur[0]][cur[1]] = 0
+
+        i = cur[0] + dir[0]
+        j = cur[1] + dir[1]
+
+        if i < 0 or j < 0 or i > len(matrix) or j > len(matrix[0]) or (i,j) in visited or matrix[i][j] != 1 :
+            continue
+        visited.add((i,j))
+        q.append((i,j,length + 1))
+    return length
+        
